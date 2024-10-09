@@ -29,7 +29,10 @@ Return in the following JSON format
 `
 
 export async function POST(req){
-    const openai = new OpenAI()
+    const openai = new OpenAI({
+      baseURL: "https://openrouter.ai/api/v1",
+      apiKey: process.env.OPENROUTER_API_KEY,
+    })
     const data = await req.text()
 
     const completion = await openai.chat.completions.create({
@@ -37,7 +40,7 @@ export async function POST(req){
             {role: "system", content: systemPrompt},
             {role: "user", content: data},
         ],
-        model: "gpt-4o",
+        model: "gpt-4o-mini",
         response_format: {type: 'json_object'} // ensures our response is always in JSON
     })
     // parse it below
