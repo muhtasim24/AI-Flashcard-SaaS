@@ -129,7 +129,7 @@ export default function Generate(){
                         >
                             <CardContent>
                                 <Box sx = {{
-                                    prespective: "1000px",
+                                    perspective: "1000px",
                                     '& > div': {
                                         transition: 'transform 0.6s',
                                         transformStyle: 'preserve-3d',
@@ -142,10 +142,10 @@ export default function Generate(){
                                             : 'rotateY(0deg)'
                                     },
                                     '& > div > div': {
-                                        position: 'aboslute',
+                                        position: 'absolute',
                                         width: '100%',
                                         height: '100%',
-                                        backfaceVisibiltiy: 'hidden',
+                                        backfaceVisibility: 'hidden',
                                         display: 'flex',
                                         justifyContent: 'center',
                                         alignItems: 'center',
