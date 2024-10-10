@@ -16,7 +16,7 @@ export default function Generate(){
     const [text, setText] = useState('')
     const [name, setName] = useState('')
     const [open, setOpen] = useState('')
-    const router = useRouter
+    const router = useRouter()
 
     // will submit our text to generate flashcards from api
     const handleSubmit = async () => {
