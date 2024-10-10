@@ -2,9 +2,10 @@
 
 import { useUser } from "@clerk/nextjs"
 import { Box, Button, CardActionArea, CardContent, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Paper, TextField, Typography } from "@mui/material"
-import { collection, getDoc, writeBatch } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { db } from "@/firebase"
+import { doc, collection, setDoc, getDoc, writeBatch } from "firebase/firestore"
 
 
 
