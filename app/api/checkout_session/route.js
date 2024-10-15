@@ -1,17 +1,29 @@
 
 import { NextResponse } from "next/server"
-import { Stripe } from 'stripe'
+import Stripe from 'stripe'
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 
 const formatAmountForStripe = (amount) => {
     return Math.round(amount * 100)
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+export async function GET(req, {params})
+{
+  const searchParams = req.nextUrl.searchParams()
+  const session_id = searchParams.get('session_id')
 
+  try {
+    const checkoutSession = await stripe.checkout.sessions.retrieve(session_id)
+    return NextResponse.json(checkoutSession)
+  } catch(error) {
+    console.error("error retrieving checkout session:", error)
+    return NextResponse.json({error: {message: error.message}}, {status: 500})
+  }
+}
 export async function POST(req) {
     const params = {
-        submit_type: 'subscription',
+        mode: 'subscription',
         payment_method_types: ['card'],
         line_items: [
           {
@@ -29,8 +41,12 @@ export async function POST(req) {
             quantity: 1,
           },
         ],
-        success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${req.headers.get(
+          'origin'
+          )}/result?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${req.headers.get(
+          'origin',
+          )}/result?session_id={CHECKOUT_SESSION_ID}`,
       };
       const checkoutSession = await stripe.checkout.sessions.create(params);
 
