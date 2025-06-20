@@ -14,6 +14,7 @@ export default function Flashcard() {
     const [flipped, setFlipped] = useState([])
 
     const searchParams = useSearchParams()
+    const count = 1;
     const search = searchParams.get('id') // get the id of the page
 
     useEffect(() => {

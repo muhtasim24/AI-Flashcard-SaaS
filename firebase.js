@@ -7,6 +7,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// hide this with git ignore
 const firebaseConfig = {
   apiKey: "AIzaSyCdIBsqIDIPtHok3PgOHKtjoGn0hFFyVYY",
   authDomain: "flashcardsaas-82d0c.firebaseapp.com",
