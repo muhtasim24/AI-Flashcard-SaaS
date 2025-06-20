@@ -15,7 +15,7 @@ export default function Flashcard() {
 
     const searchParams = useSearchParams()
     const count = 1;
-    const search = searchParams.get('id') // get the id of the pages
+    const search = searchParams.get('id') // get the id of the pagess
 
     useEffect(() => {
         async function getFlashcard() {
